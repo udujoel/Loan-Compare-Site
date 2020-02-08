@@ -2,10 +2,10 @@
 {
     public class RepaymentDetail
     {
-        public long total { get; set; }
-        public long balance { get; set; }
+        public double total { get; set; }
+        public double balance { get; set; }
         public int monthno { get; set; }
-        public long amountToPay { get; set; }
+        public double amountToPay { get; set; }
         public int payPercent { get; set; }
 
     }

@@ -1,0 +1,149 @@
+﻿@using LoanCompareSite
+
+
+@{
+    ViewBag.Title = "Loan Terms";
+    double total = 0;
+
+}
+
+<div class="inner-banner"></div>
+
+
+<br />
+<div class="title-section pb-sm-5 pb-3">
+    <h2 class="heading-agileinfo text-center pb-4">Loan <span> Terms</span></h2>
+</div>
+
+<div class="container">
+    @foreach (var item in ViewBag.Loanterms)
+    {
+
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <table class=" table table-hover">
+                    <tr>
+                        <td>
+                            <p><b>Loan Provider</b> </p>
+                        </td>
+
+                        <td>
+                            <p><b>Package Name</b> </p>
+                        </td>
+                        <td>
+                            <p><b>Chosen Duration</b></p>
+
+                        </td>
+                        <td>
+                            <p><b>Max Duration</b></p>
+
+                        </td>
+                        <td>
+                            <p><b>Amount</b></p>
+
+                        </td>
+                        <td>
+                            <p><b>Rate</b></p>
+
+                        </td>
+                    </tr>
+                    <tr>
+
+
+                        <td>
+                            <p>@ViewBag.provider</p>
+                        </td>
+                        <td>
+                            <p> @ViewBag.package</p>
+
+                        </td>
+                        <td>
+                            <p> @Session["duration"] Months</p>
+
+                        </td>
+                        <td>
+                            @item.duration
+                            Months
+                        </td>
+                        <td>
+                            <p>NGN @Session["amount"] </p>
+                        </td>
+                        <td>
+                            @item.rate %
+                        </td>
+
+                    </tr>
+
+
+                    <tr></tr>
+
+                </table>
+
+            </div>
+            <div class="modal-body text-center">
+
+                <p>@item.terms</p>
+                @{
+                    string updateCount = $"/detail/selected";
+                    Session["website"] = item.website;
+                    Session["selectedItemId"] = item.id;
+                    Session["count"] = item.count;
+
+                }
+
+                <table id="termsTable" class=" table table-hover">
+                    <thead>
+                        <tr>
+                            <td>Month</td>
+                            <td>Amount To Pay</td>
+                            <td>Balance</td>
+                            <td>Pay Completion</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var detail in ViewBag.Repayment)
+                        {
+
+                            <tr>
+                                <td>@detail.monthno</td>
+                                <td>@detail.amountToPay</td>
+                                <td>@detail.balance</td>
+                                <td>@detail.payPercent %</td>
+                                @{
+                                    total = detail.total;
+                                }
+
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total = NGN @total</td>
+
+                        </tr>
+                    </tfoot>
+                </table>
+                <a href=@updateCount><button class="btn-success btn-lg">Accept Terms and Apply! &raquo;</button></a>
+
+            </div>
+
+        </div>
+
+
+    }
+</div>
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('#termsTable').DataTable({
+            });
+        });
+
+    </script>
+}

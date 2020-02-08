@@ -1,0 +1,101 @@
+﻿@model IEnumerable<LoanCompareSite.Models.LoansDetail>
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int sn = 1;
+}
+<div class="inner-banner"></div>
+
+
+
+<div class="container">
+    <br /><br /><br />
+    <div class="title-section pb-sm-5 pb-3">
+        <h2 class="heading-agileinfo text-center pb-4">Loan <span> Details</span></h2>
+    </div>
+
+
+    @{
+        if (ViewBag.Error != null)
+        {
+            <br /><br /><hr />
+            <h4 class="text-center text-danger">@ViewBag.Error</h4>
+            <br />
+            <br />
+            <a href="/home">
+                <p class="btn-lg btn-block btn btn-info">Try Another Request &raquo;</p>
+            </a>
+
+            <hr />
+            <br />
+
+
+        }
+        else
+        {
+            <div class="container">
+
+                <table id="detailsTable" style="width: 80%;" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>LOGO</td>
+                            <td style="text-align: left; vertical-align: middle;">
+                                @Html.DisplayNameFor(model => model.name).ToString().ToUpper()
+                            </td>
+                            <td style="text-align: left; vertical-align: middle;">
+                                @Html.DisplayNameFor(model => model.package).ToString().ToUpper()
+                            </td>
+
+                            <td>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @(sn++)
+                                </td>
+                                <td><img src="~/Content/images/logo.png" width="70" /></td>
+                                <td style="text-align: left; vertical-align: middle;">
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </td>
+                                <td style="text-align: left; vertical-align: middle;">
+                                    @Html.DisplayFor(modelItem => item.package)
+                                </td>
+
+                                <td style="text-align: center; vertical-align: middle;">
+                                    @{
+                                        string link = $"/detail/loanterms/{item.id}";
+                                    }
+                                    <a href=@link><button class="btn-info btn-sm">Get More Details &raquo;</button> </a>
+
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        }
+    }
+
+
+
+</div>
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('#detailsTable').DataTable({
+            });
+        });
+
+    </script>
+}
