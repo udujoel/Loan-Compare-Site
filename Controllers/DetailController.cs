@@ -113,6 +113,11 @@ namespace LoanCompareSite.Controllers
                 string query = $"SELECT * FROM loandetail WHERE id = {id}";
                 _com = new SqlCommand(query, _conn);
                 _dr = _com.ExecuteReader();
+
+                if (_dr.HasRows == false)
+                {
+                    return View("Error");
+                }
                 while (_dr.Read())
                 {
 
@@ -136,7 +141,6 @@ namespace LoanCompareSite.Controllers
                 ViewBag.provider = loanterms[0].name;
                 ViewBag.package = loanterms[0].package;
 
-                //                int maxDuration = loanterms[0].duration;
                 int count = 1;
 
                 while (count < userDuration)
