@@ -32,10 +32,14 @@ namespace LoanCompareSite.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult Detail(long amount, int duration)
+        public ActionResult Detail(LoanRequest loanRequest)
         {
-            Session["amount"] = amount;
-            Session["duration"] = duration;
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+            Session["amount"] = loanRequest.amount;
+            Session["duration"] = loanRequest.duration;
             List<LoansDetail> loansDetail = new List<LoansDetail>();
             long minAmount, maxAmount;
             int maxDuration;
@@ -56,7 +60,7 @@ namespace LoanCompareSite.Controllers
                     maxAmount = _dr.GetInt64(4);
                     maxDuration = _dr.GetInt32(10);
 
-                    if (amount >= minAmount && amount <= maxAmount && duration <= maxDuration)
+                    if (loanRequest.amount >= minAmount && loanRequest.amount <= maxAmount && loanRequest.duration <= maxDuration)
                     {
                         loansDetail.Add(new LoansDetail()
                         {
