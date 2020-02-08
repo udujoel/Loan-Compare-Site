@@ -31,7 +31,7 @@ namespace LoanCompareSite.Controllers
                 new RouteValueDictionary(new { controller = "Detail", action = "Detail", Amount = amount }));
         }
 
-
+        [ValidateAntiForgeryToken]
         public ActionResult Detail(long amount, int duration)
         {
             Session["amount"] = amount;

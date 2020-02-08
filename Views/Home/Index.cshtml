@@ -7,12 +7,13 @@
 		<!-- banner-text -->
 		<div class="banner-text">
 			<div class="slider-info">
-				<h3 style="text-shadow: 2px 2px 3px black;">You dont have to keep suffering </h3>
+				<h3 style="text-shadow: 2px 2px 3px black;">You don't have to keep suffering </h3>
 				<h4>Let us give you that Loan you've always wanted!! </h4>
 			</div>
 		</div>
 		<div class="banner-top pb-5">
-			<form method="post" action="/detail/detail">
+			<form method="post" action="/detail/detail">   
+				@Html.AntiForgeryToken()
 				<div class="row slider-bottom">
 					<div class="col-md-3 slider-bottom-lft">
 
