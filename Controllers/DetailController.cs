@@ -96,7 +96,7 @@ namespace LoanCompareSite.Controllers
         }
 
 
-
+        [Authorize]
         public ActionResult Loanterms(int id)
         {
 
