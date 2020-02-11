@@ -48,14 +48,14 @@ namespace LoanCompareSite
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            //             Uncomment the following lines to enable logging in with third party login providers
+            app.UseMicrosoftAccountAuthentication(
+                clientId: "c946bc7f-c0db-450e-8809-f0c78f1da953",
+                clientSecret: "zSwwj.?3]yR@GUgoBt7jhLekXxs6Y1O6");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: "fGutNFFUDZvrdBJwgVSoJhKBv",
+               consumerSecret: "EK7BYJOqzB1av6f7x0Z9AmC7RZ3SB8kdc9nFHi6CWOamMoNteh");
 
             app.UseFacebookAuthentication(
                appId: "637262320362265",
@@ -63,8 +63,8 @@ namespace LoanCompareSite
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "000-000.apps.googleusercontent.com",
-                ClientSecret = "00000000000"
+                ClientId = "774952119296-nvfnahj2u4tr35ghv6lh2cr6bpuu11b4.apps.googleusercontent.com",
+                ClientSecret = "4wF93iUgNBX4QgQlDFz6UWpC"
             });
 
         }

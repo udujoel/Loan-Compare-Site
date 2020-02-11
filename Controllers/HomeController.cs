@@ -4,6 +4,7 @@ namespace LoanCompareSite.Controllers
 {
 
     [HandleError]
+    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()
