@@ -9,6 +9,7 @@
 	<meta charset="utf-8" />
 
 	<!-- Custom Theme files -->
+	
 	@Styles.Render("~/Content/css")
 	@Scripts.Render("~/bundles/modernizr")
 
@@ -38,7 +39,7 @@
 
 					</li>
 					<li class="nav-item  mr-3 mt-lg-0 mt-3">
-						@Html.ActionLink("About", "About", "Home",  new { @class = "nav-link shadow"})
+						@Html.ActionLink("About", "About", "Home", new { @class = "nav-link shadow" })
 
 					</li>
 
@@ -86,6 +87,7 @@
 
 	<!-- //footer -->
 	<!-- js -->
+	<script src="https://use.fontawesome.com/4108d38f49.js"></script>
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/bootstrap")
 	@RenderSection("scripts", required: false)
