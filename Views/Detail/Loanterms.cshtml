@@ -107,8 +107,8 @@
 
                             <tr>
                                 <td>@detail.monthno</td>
-                                <td>@detail.amountToPay</td>
-                                <td>@detail.balance</td>
+                                <td>@String.Format("{0:C}", @detail.amountToPay)</td>
+                                <td> @String.Format("{0:C}",@detail.balance)</td>
                                 <td>@detail.payPercent %</td>
                                 @{
                                     total = detail.total;
@@ -122,7 +122,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>Total = NGN @total</td>
+                            <td>Total Repayment Amount =<b> @String.Format("{0:C}", @total) </b></td>
 
                         </tr>
                     </tfoot>
