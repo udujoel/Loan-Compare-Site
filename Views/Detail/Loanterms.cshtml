@@ -67,7 +67,7 @@
                             Months
                         </td>
                         <td>
-                            <p>NGN @Session["amount"] </p>
+                            <p> @String.Format("{0:C}", @Session["amount"]) </p>
                         </td>
                         <td>
                             @item.rate %
