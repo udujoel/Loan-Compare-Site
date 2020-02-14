@@ -1,44 +1,95 @@
 ﻿@model LoanCompareSite.Models.RegisterViewModel
+
+@using LoanCompareSite.Models
 @{
-    ViewBag.Title = "Register";
+	ViewBag.Title = "Register";
 }
 
 <div class="inner-banner" style="margin-bottom: -5rem;"></div>
 <h2 class="heading-agileinfo text-center pb-4">@ViewBag.Title <span>.</span></h2>
 
- <br/>
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <br/>
-    <h4 class="text-center">Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+<br />		  
+
+
+
+<!-- content -->
+<div class="container-agille">
+	<div class="formBox level-login">
+		<div class="box boxShaddow"></div>
+
+		<!-- login -->
+		<div class="box loginBox">
+
+			<!-- register -->
+			
+				<span class="reg_bg"></span>
+				<h3>Register</h3>
+
+				@using (Html.BeginForm("Register", "Account", FormMethod.Post, new {@class = "form", role = "form"}))
+				{
+					@Html.AntiForgeryToken()
+
+
+					@Html.ValidationSummary("", new {@class = "text-danger"})
+					<div class="f_row-2">
+
+						@Html.LabelFor(m => m.Email, new {@class = "control-label"})
+
+						@Html.TextBoxFor(m => m.Email, new {@class = "form-control input-field"})
+
+
+
+					</div>
+
+					<div class="f_row-2 last">
+
+						@Html.LabelFor(m => m.Password, new {@class = " control-label"})
+
+						@Html.PasswordFor(m => m.Password, new {@class = "form-control input-field"})
+
+
+					</div>
+
+					<div class="f_row-2 last">
+
+						@Html.LabelFor(m => m.ConfirmPassword, new {@class = "control-label"})
+
+						@Html.PasswordFor(m => m.ConfirmPassword, new {@class = "form-control input-field"})
+
+
+					</div>
+
+
+
+					<div class="col-md-offset-2 col-md-10">
+						<input type="submit" class="btn btn-default submit-w3" value="Register"/>
+					</div>
+
+				}
+
+
+				<section id="socialLoginForm">
+					@Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel {ReturnUrl = ViewBag.ReturnUrl})
+				</section>
+
+
+		
+
+
+		</div>
+
+		
+		
+		
+</div>
+<br/>	 <br/>	<br/>	 <br/>	   <br/>	<br/> <br/>	  <br/><br/>  <br/>	<br/>  <br/>
+</div>
+<!-- //content -->
+
+<hr />
+
+
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jqueryval")
 }
