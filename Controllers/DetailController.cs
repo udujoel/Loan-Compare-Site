@@ -113,87 +113,86 @@ namespace LoanCompareSite.Controllers
             List<Loanterms> loanterms = new List<Loanterms>();
 
             List<RepaymentDetail> repaymentDetail = new List<RepaymentDetail>();
-            //            dynamic myModal = new ExpandoObject();
 
             try
             {
-                ConnectionString();
-                _conn.Open();
-                _com.Connection = _conn;
-
-                string query = $"SELECT * FROM loandetail WHERE id = {id}";
-                _com = new SqlCommand(query, _conn);
-                _dr = _com.ExecuteReader();
-
-                if (_dr.HasRows == false)
-                {
-                    return View("Error");
-                }
-                while (_dr.Read())
+                using (var db = new LoanComparerDBModel())
                 {
 
-                    loanterms.Add(new Loanterms()
+                 
+                    var query = db.loandetails.Where(d => d.id == id).ToList();
+                    
+
+                    if (query.Count == 0)
                     {
-                        id = _dr.GetInt32(0),
-                        name = _dr.GetString(1),
-                        package = _dr.GetString(2),
-                        count = _dr.GetInt32(5),
-                        rate = _dr.GetFloat(7),
-                        terms = _dr.GetString(8),
-                        website = _dr.GetString(9),
-                        duration = _dr.GetInt32(10)
-                    });
-
-                }
-
-
-
-
-                ViewBag.provider = loanterms[0].name;
-                ViewBag.package = loanterms[0].package;
-
-                int count = 1;
-
-                while (count < userDuration)
-                {
-                    if (userDuration > 3)
-                    {
-                        loanterms[0].rate += 2;
+                        return View("Error");
                     }
 
-                    count += 3;
-                }
-
-
-
-                //for repayment table:
-
-                double repaymentOnPrincipal = (userAmount) / userDuration;
-                double repaymentOnInterestPerYear = (userAmount * loanterms[0].rate * 0.01) / 12;
-                double monthlyLoanDue = repaymentOnPrincipal + repaymentOnInterestPerYear;
-
-
-                double amountPaid = monthlyLoanDue;
-                double total = monthlyLoanDue * userDuration;
-
-
-                int rCount = 0;
-                while (rCount < userDuration)
-                {
-                    repaymentDetail.Add(new RepaymentDetail()
+                    foreach (var detail in query)
                     {
-                        monthno = rCount + 1,
-                        amountToPay = Math.Round(monthlyLoanDue),
-                        payPercent = (int)Math.Round((amountPaid / total) * 100),
-                        total = total,
-                        balance = total - amountPaid,
-                    });
 
-                    amountPaid += monthlyLoanDue;
-                    rCount += 1;
+                        loanterms.Add(new Loanterms()
+                        {
+                            id = detail.id,
+                            name = detail.name,
+                            package = detail.package,
+                            count = (int)detail.count,
+                            rate = detail.rate,
+                            terms = detail.terms,
+                            website = detail.website,
+                            duration = detail.duration
+                        });
+
+                    }
+
+
+
+
+                    ViewBag.provider = loanterms[0].name;
+                    ViewBag.package = loanterms[0].package;
+
+                    int count = 1;
+
+                    while (count < userDuration)
+                    {
+                        if (userDuration > 3)
+                        {
+                            loanterms[0].rate += 2;
+                        }
+
+                        count += 3;
+                    }
+
+
+
+                    //for repayment table:
+
+                    double repaymentOnPrincipal = (userAmount) / userDuration;
+                    double repaymentOnInterestPerYear = (userAmount * loanterms[0].rate * 0.01) / 12;
+                    double monthlyLoanDue = repaymentOnPrincipal + repaymentOnInterestPerYear;
+
+
+                    double amountPaid = monthlyLoanDue;
+                    double total = monthlyLoanDue * userDuration;
+
+
+                    int rCount = 0;
+                    while (rCount < userDuration)
+                    {
+                        repaymentDetail.Add(new RepaymentDetail()
+                        {
+                            monthno = rCount + 1,
+                            amountToPay = Math.Round(monthlyLoanDue),
+                            payPercent = (int)Math.Round((amountPaid / total) * 100),
+                            total = total,
+                            balance = total - amountPaid,
+                        });
+
+                        amountPaid += monthlyLoanDue;
+                        rCount += 1;
+                    }
+
                 }
-
-
 
             }
             catch (Exception e)
