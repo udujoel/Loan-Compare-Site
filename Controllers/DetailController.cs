@@ -15,16 +15,7 @@ namespace LoanCompareSite.Controllers
     public class DetailController : Controller
     {
 
-        SqlConnection _conn = new SqlConnection();
-        SqlCommand _com = new SqlCommand();
-        private SqlDataReader _dr;
-
-        // GET: Detail
-        //[HttpGet]
-        //public ActionResult Index() {
-
-        //    return View();
-        //    }
+        
         [HttpPost]
         public ActionResult Index(string amount)
         {
@@ -94,10 +85,7 @@ namespace LoanCompareSite.Controllers
 
                 throw;
             }
-            finally
-            {
-                _conn.Close();
-            }
+       
 
             return View(loansDetail);
         }
@@ -119,9 +107,9 @@ namespace LoanCompareSite.Controllers
                 using (var db = new LoanComparerDBModel())
                 {
 
-                 
+
                     var query = db.loandetails.Where(d => d.id == id).ToList();
-                    
+
 
                     if (query.Count == 0)
                     {
@@ -200,17 +188,12 @@ namespace LoanCompareSite.Controllers
                 Console.WriteLine(e);
                 throw;
             }
-            finally
-            {
-                _conn.Close();
-
-            }
+          
 
             ViewBag.Loanterms = loanterms;
             ViewBag.Repayment = repaymentDetail;
 
-            //            myModal.loanterms = loanterms;
-            //            myModal.repayment = repaymentDetail;
+            
 
             return View();
         }
@@ -220,42 +203,31 @@ namespace LoanCompareSite.Controllers
 
             try
             {
-                ConnectionString();
-                _conn.Open();
-                _com.Connection = _conn;
+                using (var db = new LoanComparerDBModel())
+                {
 
+                    int currentCount = 0;
+                    currentCount = (int)Session["count"];
 
-                int currentCount = 0;
+                    db.loandetails.Find((int)Session["selectedItemId"]).count = currentCount + 1;
+                    db.loandetails.Find((int)Session["selectedItemId"]).date = DateTime.Now;
+                    
+                    db.SaveChanges();
 
-                currentCount = (int)Session["count"];
-
-                string updateQuery = $"UPDATE loandetail SET count = {currentCount + 1}, date = {DateTime.Today} WHERE id = {(int)Session["selectedItemId"]}";
-
-                _com = new SqlCommand(updateQuery, _conn);
-                _com.ExecuteNonQuery();
-
-
-
+                }
             }
             catch (Exception e)
             {
 
                 Console.WriteLine(e.Message);
             }
-            finally
-            {
-                _conn.Close();
-            }
+           
 
 
             return Redirect((string)Session["website"]);
         }
 
 
-        private void ConnectionString()
-        {
-            _conn.ConnectionString = "Data Source=JOELL;Initial Catalog=loanComparer;Integrated Security=True";
-
-        }
+       
     }
 }
