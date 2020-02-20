@@ -1,11 +1,13 @@
-﻿using System;
+﻿using LoanCompareSite.Models;
+using LoanCompareSite.Models.EF;
+using LoanCompareSite.Models.viewModels;
+
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
-
-using LoanCompareSite.Models;
-using LoanCompareSite.Models.viewModels;
 
 namespace LoanCompareSite.Controllers
 {
@@ -46,44 +48,49 @@ namespace LoanCompareSite.Controllers
 
             try
             {
-                ConnectionString();
-                _conn.Open();
-                _com.Connection = _conn;
 
-                string query = "SELECT * FROM loandetail";
-                _com = new SqlCommand(query, _conn);
-                _dr = _com.ExecuteReader();
-
-                while (_dr.Read())
+                using (var db = new LoanComparerDBModel())
                 {
-                    minAmount = _dr.GetInt64(3);
-                    maxAmount = _dr.GetInt64(4);
-                    maxDuration = _dr.GetInt32(10);
 
-                    if (loanRequest.amount >= minAmount && loanRequest.amount <= maxAmount && loanRequest.duration <= maxDuration)
+
+
+                    var query = from d in db.loandetails
+                                orderby d.id
+                                select d;
+
+                    foreach (var detail in query)
                     {
-                        loansDetail.Add(new LoansDetail()
+                        minAmount = detail.minAmount;
+                        maxAmount = detail.maxAmount;
+                        maxDuration = detail.duration;
+
+                        if (loanRequest.amount >= minAmount && loanRequest.amount <= maxAmount && loanRequest.duration <= maxDuration)
                         {
+                            loansDetail.Add(new LoansDetail()
+                            {
 
 
-                            id = _dr.GetInt32(0),
-                            name = _dr.GetString(1),
-                            package = _dr.GetString(2)
+                                id = detail.id,
+                                name = detail.name,
+                                package = detail.package
 
-                        });
+                            });
+                        }
+
                     }
 
-                }
+                    if (loansDetail.Count < 1)
+                    {
+                        ViewBag.Error = "Sorry. None of Our Providers Can Provide Your Request At the Moment. Pls Try another request.";
+                        return View(loansDetail);
+                    }
 
-                if (loansDetail.Count < 1)
-                {
-                    ViewBag.Error = "Sorry. None of Our Providers Can Provide Your Request At the Moment. Pls Try another request.";
-                    return View(loansDetail);
                 }
 
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
 
                 throw;
             }
@@ -191,7 +198,7 @@ namespace LoanCompareSite.Controllers
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e);
                 throw;
             }
             finally

@@ -27,9 +27,9 @@ namespace LoanCompareSite
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                                                                  "~/Content/css/bootstrap.css",
-                                                                 "~/Content/css/style.css",
                                                                  "~/Content/css/loginstyle.css",
-                                                                 "~/Content/css/dataTables.css"));
+                                                                 "~/Content/css/dataTables.css",
+                                                                 "~/Content/css/style.css"));
         }
     }
 }
