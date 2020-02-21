@@ -4,7 +4,6 @@ using LoanCompareSite.Models.viewModels;
 
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -15,7 +14,7 @@ namespace LoanCompareSite.Controllers
     public class DetailController : Controller
     {
 
-        
+
         [HttpPost]
         public ActionResult Index(string amount)
         {
@@ -83,9 +82,9 @@ namespace LoanCompareSite.Controllers
             {
                 Console.WriteLine(e);
 
-                throw;
+
             }
-       
+
 
             return View(loansDetail);
         }
@@ -188,12 +187,12 @@ namespace LoanCompareSite.Controllers
                 Console.WriteLine(e);
                 throw;
             }
-          
+
 
             ViewBag.Loanterms = loanterms;
             ViewBag.Repayment = repaymentDetail;
 
-            
+
 
             return View();
         }
@@ -211,7 +210,7 @@ namespace LoanCompareSite.Controllers
 
                     db.loandetails.Find((int)Session["selectedItemId"]).count = currentCount + 1;
                     db.loandetails.Find((int)Session["selectedItemId"]).date = DateTime.Now;
-                    
+
                     db.SaveChanges();
 
                 }
@@ -221,13 +220,11 @@ namespace LoanCompareSite.Controllers
 
                 Console.WriteLine(e.Message);
             }
-           
-
 
             return Redirect((string)Session["website"]);
         }
 
 
-       
+
     }
 }

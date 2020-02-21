@@ -93,7 +93,10 @@
 
     <script>
         $(document).ready(function () {
-            $('#detailsTable').DataTable({
+            $( '#detailsTable' ).DataTable( {
+                "paging": false,
+                "searching": false,
+                "info": true
             });
         });
 
