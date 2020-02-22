@@ -8,7 +8,7 @@ namespace LoanCompareSite.Controllers
 {
     public class CallbackController : Controller
     {
-        //        [Route("order/callback")]
+        [Route("order/callback")]
         public async Task<ActionResult> Index()
         {
             string secretKey = ConfigurationManager.AppSettings["PaystackSecret"];
