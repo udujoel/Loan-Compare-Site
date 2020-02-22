@@ -160,6 +160,7 @@ namespace LoanCompareSite.Controllers
 
 
                     double amountPaid = monthlyLoanDue;
+                    Session["monthly-due"] = monthlyLoanDue;
                     double total = monthlyLoanDue * userDuration;
 
 
