@@ -409,6 +409,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Subscription\Index.cshtml" />
     <Content Include="Views\Callback\Index.cshtml" />
+    <Content Include="Views\Callback\PaymentError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
