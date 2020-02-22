@@ -39,7 +39,7 @@ namespace LoanCompareSite.Controllers
             try
             {
 
-                using (var db = new LoanComparerDBModel())
+                using (var db = new LoanComparerModel())
                 {
 
 
@@ -103,7 +103,7 @@ namespace LoanCompareSite.Controllers
 
             try
             {
-                using (var db = new LoanComparerDBModel())
+                using (var db = new LoanComparerModel())
                 {
 
 

@@ -221,8 +221,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\EF\LoanComparerDBModel.cs" />
+    <Compile Include="Models\EF\LoanComparerModel.cs" />
     <Compile Include="Models\EF\loandetail.cs" />
+    <Compile Include="Models\EF\subscription.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoanDetail.cs" />
     <Compile Include="Models\LoanRequest.cs" />

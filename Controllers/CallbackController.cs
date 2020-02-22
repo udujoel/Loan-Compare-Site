@@ -25,7 +25,7 @@ namespace LoanCompareSite.Controllers
 
                     try
                     {
-                        using (var db = new LoanComparerDBModel())
+                        using (var db = new LoanComparerModel())
                         {
 
                             int currentCount = 0;
@@ -33,6 +33,7 @@ namespace LoanCompareSite.Controllers
 
                             db.loandetails.Find((int)Session["selectedItemId"]).count = currentCount + 1;
                             db.loandetails.Find((int)Session["selectedItemId"]).date = DateTime.Now;
+                            
 
                             db.SaveChanges();
 

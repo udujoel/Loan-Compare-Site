@@ -1,15 +1,19 @@
 namespace LoanCompareSite.Models.EF
 {
+    using System;
     using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
-    public partial class LoanComparerDBModel : DbContext
+    public partial class LoanComparerModel : DbContext
     {
-        public LoanComparerDBModel()
-            : base("name=LoanComparerDBModel")
+        public LoanComparerModel()
+            : base("name=LoanComparerCFDBModel")
         {
         }
 
         public virtual DbSet<loandetail> loandetails { get; set; }
+        public virtual DbSet<subscription> subscriptions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
