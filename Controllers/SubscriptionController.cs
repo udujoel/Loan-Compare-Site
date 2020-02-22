@@ -25,7 +25,8 @@ namespace LoanCompareSite.Controllers
 
             using (var db = new LoanComparerModel())
             {
-                var status = db.subscriptions.Where(d => d.userid == User.Identity.GetUserName().ToLower()).ToList();
+                string useremail = User.Identity.GetUserName().ToLower();
+                var status = db.subscriptions.Where(d => d.userid == useremail).ToList();
                 if (status.Count() > 0)
                 {
                     //                    isSubscribed = true;

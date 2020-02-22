@@ -24,6 +24,7 @@ namespace LoanCompareSite.Controllers
                 var response = await paystackTransactionAPI.VerifyTransaction(tranxRef);
                 if (response.status)
                 {
+                    int savedCount = 0;
 
                     try
                     {
@@ -35,14 +36,18 @@ namespace LoanCompareSite.Controllers
 
                             db.loandetails.Find((int)Session["selectedItemId"]).count = currentCount + 1;
                             db.loandetails.Find((int)Session["selectedItemId"]).date = DateTime.Now;
-
                             //  Update subscription table
+                            if (savedCount <1)
+                            {
+                                var user = new subscription();
+                                user.userid = User.Identity.GetUserName().ToLower();
+                                user.startdate = DateTime.Now;
+                                user.enddate = DateTime.Now.AddMonths(1);
+                                db.subscriptions.Add(user);
 
-                            var user = new subscription();
-                            user.userid = User.Identity.GetUserName().ToLower();
-                            user.startdate = DateTime.Now;
-                            user.enddate = DateTime.Now.AddMonths(1);
-                            db.subscriptions.Add(user);
+                                savedCount += 1;
+                            }
+                            
 
                             db.SaveChanges();
 
