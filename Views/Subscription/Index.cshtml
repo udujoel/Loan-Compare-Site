@@ -1,59 +1,67 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Pay";
 }
 
-<h2>Subscribe</h2>
 
-<div style="display: none" class="redirect-message">
-    <div>
-        <p><img src="@Url.Content("~/Content/loading.gif")" alt="Alternate Text" /> </p>
-        <p>Please wait..</p>
-        <p>You are been redirected to a secure payment system</p>
+<div class="inner-banner"></div>
+
+
+<br/>
+<div class="title-section pb-sm-5 pb-3">
+    <h2 class="heading-agileinfo text-center pb-4">Subscription <span> Details</span></h2>
+</div>
+
+  
+<div class="container">
+    <div style="display: none" class="redirect-message">
+        <div>
+            <p><img src="@Url.Content("~/Content/loading.gif")" alt="Alternate Text" /> </p>
+            <p>Please wait..</p>
+            <p>You are been redirected to a secure payment system</p>
+        </div>
+
+    </div>
+
+    <div class="col-md-1"></div>
+    <div style="background: #fff; padding: 0 20px" class="col-md-3">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label">
+                    First Name
+                </label>
+                <input type="text" name="firstName" id="firstName"  class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label class="control-label">
+                    Last Name
+                </label>
+                <input type="text" name="lastName" id="lastName"  class="form-control" required/>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">
+                    Email
+                </label>
+                <input type="email" name="email" id="email" class="form-control" required/>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">
+                    Phone
+                </label>
+                <input type="text" name="phone" id="phone" class="form-control" required/>
+            </div>
+
+            <div class="form-group">
+                <a id="payNowButton" href="20000" class="btn btn-success pull-right payNowBtn">
+                    Pay Now <span class="glyphicon glyphicon-play"></span>
+                </a>
+            </div>
+        </div>
     </div>
 
 </div>
-
-<div class="col-md-1"></div>
-<div style="background: #fff; padding: 0 20px" class="col-md-3">
-    <div class="form-horizontal">
-        <h3>Customer Details</h3>
-        <div class="form-group">
-            <label class="control-label">
-                First Name
-            </label>
-            <input type="text" name="firstName" id="firstName" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label class="control-label">
-                Last Name
-            </label>
-            <input type="text" name="lastName" id="lastName" class="form-control" />
-        </div>
-
-        <div class="form-group">
-            <label class="control-label">
-                Email
-            </label>
-            <input type="email" name="email" id="email" class="form-control" />
-        </div>
-
-        <div class="form-group">
-            <label class="control-label">
-                Phone
-            </label>
-            <input type="text" name="phone" id="phone" class="form-control" />
-        </div>
-
-        <div class="form-group">
-            <a id="payNowButton" href="20000" class="btn btn-success pull-right payNowBtn">
-                Pay Now <span class="glyphicon glyphicon-play"></span>
-            </a>
-        </div>
-    </div>
-</div>
-
-
 
 @section Scripts{
 
