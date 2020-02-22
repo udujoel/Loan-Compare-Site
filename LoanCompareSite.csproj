@@ -48,6 +48,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PayStack.Net, Version=0.7.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Paystack.Net.0.7.7\lib\netstandard2.0\PayStack.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />

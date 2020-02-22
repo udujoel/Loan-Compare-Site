@@ -85,7 +85,7 @@
 
                 <p>@item.terms</p>
                 @{
-                    string updateCount = $"/detail/selected";
+//                    string updateCount = $"/detail/selected";
                     Session["website"] = item.website;
                     Session["selectedItemId"] = item.id;
                     Session["count"] = item.count;
@@ -127,7 +127,7 @@
                         </tr>
                     </tfoot>
                 </table>
-                <a href=@updateCount><button class="btn-success btn-lg">Accept Terms and Apply! &raquo;</button></a>
+                <a href=@Url.Action("Selected", "Detail")><button class="btn-success btn-lg">Accept Terms and Apply! &raquo;</button></a>
 
             </div>
 
