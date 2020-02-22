@@ -248,6 +248,7 @@
     <Content Include="Content\images\bg.jpg" />
     <Content Include="Content\images\bg1.jpg" />
     <Content Include="Content\images\bg.svg" />
+    <Content Include="Content\images\loading.GIF" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\datatables.js" />

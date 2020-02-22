@@ -16,7 +16,7 @@
 <div class="container">
     <div style="display: none" class="redirect-message">
         <div>
-            <p><img src="@Url.Content("~/Content/loading.gif")" alt="Alternate Text" /> </p>
+            <p><img src="@Url.Content("~/Content/images/loading.gif")" alt="Alternate Text" /> </p>
             <p>Please wait..</p>
             <p>You are been redirected to a secure payment system</p>
         </div>
@@ -73,7 +73,7 @@
             function InitTransaction(data) {
                 return $.ajax({
                     type: "POST",
-                    url: "@Url.Action("InitializePayment", "AppLogic", new {area = ""})",
+                    url: "@Url.Action("InitializePayment", "Subscription", new {area = ""})",
                     data: data,
                     dataType: 'json',
                     contentType: 'application/json;charset=utf-8'
