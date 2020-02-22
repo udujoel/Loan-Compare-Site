@@ -1,5 +1,7 @@
 ﻿using LoanCompareSite.Models.EF;
 
+using Microsoft.AspNet.Identity;
+
 using Paystack.Net.SDK.Transactions;
 
 using System;
@@ -33,7 +35,11 @@ namespace LoanCompareSite.Controllers
 
                             db.loandetails.Find((int)Session["selectedItemId"]).count = currentCount + 1;
                             db.loandetails.Find((int)Session["selectedItemId"]).date = DateTime.Now;
-                            
+                            var entity = new subscription();
+                            entity.userid = User.Identity.GetUserName().ToLower();
+                            entity.startdate = DateTime.Now;
+                            entity.enddate = DateTime.Now.AddMonths(1);
+                            db.subscriptions.Add(entity);
 
                             db.SaveChanges();
 
