@@ -1,10 +1,16 @@
-﻿using LoanCompareSite.Models.viewModels;
+﻿using System;
+using System.Collections.Generic;
+using LoanCompareSite.Models.viewModels;
 
 using Paystack.Net.SDK.Transactions;
 
 using System.Configuration;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using LoanCompareSite.Models.EF;
+using Microsoft.AspNet.Identity;
+using System.Globalization;
 
 
 namespace LoanCompareSite.Controllers
@@ -14,6 +20,33 @@ namespace LoanCompareSite.Controllers
         // GET: Checkout
         public ActionResult Index()
         {
+            //check if user is subscribed already
+            bool isSubscribed = false;
+            bool activeSubscription = false;
+
+            using (var db = new LoanComparerModel())
+            {
+                var status = db.subscriptions.Where(d => d.userid == User.Identity.GetUserName().ToLower()).ToList();
+                if (status.Count()>0)
+                {
+                    isSubscribed = true;
+
+                    TimeSpan diff = (TimeSpan) (status[0].enddate - status[0].startdate);
+
+
+
+                    if (diff.Days >15)
+                    {
+                        activeSubscription = true;
+                    }
+                }
+            }
+
+            if (activeSubscription && isSubscribed)
+            {
+                return Redirect(Session["website"] as string);
+            }
+
             return View();
         }
 

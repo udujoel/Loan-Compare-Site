@@ -35,6 +35,9 @@ namespace LoanCompareSite.Controllers
 
                             db.loandetails.Find((int)Session["selectedItemId"]).count = currentCount + 1;
                             db.loandetails.Find((int)Session["selectedItemId"]).date = DateTime.Now;
+
+                            //  Update subscription table
+
                             var user = new subscription();
                             user.userid = User.Identity.GetUserName().ToLower();
                             user.startdate = DateTime.Now;
