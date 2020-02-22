@@ -1,5 +1,8 @@
-﻿using Paystack.Net.SDK.Transactions;
+﻿using LoanCompareSite.Models.EF;
 
+using Paystack.Net.SDK.Transactions;
+
+using System;
 using System.Configuration;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -19,6 +22,28 @@ namespace LoanCompareSite.Controllers
                 var response = await paystackTransactionAPI.VerifyTransaction(tranxRef);
                 if (response.status)
                 {
+
+                    try
+                    {
+                        using (var db = new LoanComparerDBModel())
+                        {
+
+                            int currentCount = 0;
+                            currentCount = (int)Session["count"];
+
+                            db.loandetails.Find((int)Session["selectedItemId"]).count = currentCount + 1;
+                            db.loandetails.Find((int)Session["selectedItemId"]).date = DateTime.Now;
+
+                            db.SaveChanges();
+
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                        return View("Error");
+                    }
+
                     return View(response);
                 }
             }

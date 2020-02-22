@@ -201,26 +201,7 @@ namespace LoanCompareSite.Controllers
         public ActionResult Selected()
         {
 
-            try
-            {
-                using (var db = new LoanComparerDBModel())
-                {
 
-                    int currentCount = 0;
-                    currentCount = (int)Session["count"];
-
-                    db.loandetails.Find((int)Session["selectedItemId"]).count = currentCount + 1;
-                    db.loandetails.Find((int)Session["selectedItemId"]).date = DateTime.Now;
-
-                    db.SaveChanges();
-
-                }
-            }
-            catch (Exception e)
-            {
-
-                Console.WriteLine(e.Message);
-            }
 
             return RedirectToRoute(new { Controller = "Subscription", action = "Index" });
             //            return Redirect((string)Session["website"]);
