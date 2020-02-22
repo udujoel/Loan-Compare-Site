@@ -23,7 +23,7 @@ namespace LoanCompareSite.Controllers
         {
             string secretKey = ConfigurationManager.AppSettings["PaystackSecret"];
             var paystackTransactionAPI = new PaystackTransaction(secretKey);
-            var response = await paystackTransactionAPI.InitializeTransaction(model.email, model.amount, model.firstName, model.lastName, "http://localhost:17869/order/callback");
+            var response = await paystackTransactionAPI.InitializeTransaction(model.email, model.amount, model.firstName, model.lastName, "https://localhost:44348/callback/callback");
             //Note that callback url is optional
             if (response.status == true)
             {
