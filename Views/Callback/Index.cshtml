@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="inner-banner"></div>
+
+
+<br/>
+<div class="title-section pb-sm-5 pb-3">
+    <h2 class="heading-agileinfo text-center pb-4">Transaction<span> Status</span></h2>
+</div>
+    
+<div class="container">
+    <div style="margin-top: 40px">
+        <h2>Success Response</h2>
+        <pre>
+
+@Html.Raw(Json.Encode(Model));
+
+</pre>
+
+    </div>
+
+</div>
