@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Pay";
 }
@@ -13,20 +13,20 @@
 </div>
 
 
+<div class="container">
+    <div align="center" style="display: none" class="redirect-message">
+        <div>
+            <p><img width="200" src="@Url.Content("~/Content/images/loading.gif")" alt="Alternate Text" /> </p>
+            <p>Please wait..</p>
+            <p>You are been redirected to a secure payment system</p>
+        </div>
 
-<div align="center" style="display: none" class="redirect-message">
-    <div>
-        <p><img width="200" src="@Url.Content("~/Content/images/loading.gif")" alt="Alternate Text" /> </p>
-        <p>Please wait..</p>
-        <p>You are been redirected to a secure payment system</p>
     </div>
 
-</div>
+
+    <br />
 
 
-<br />
-
-<div class="container">
     <!-- content -->
     <div class="container-agille">
         <div class="formBox level-login">
@@ -38,52 +38,52 @@
 
                 <div class="container">
                     <div class="form">
-                        <div class="f_row-2">
-                            <input type="text" name="firstName" id="firstName" class="form-control" autofocus placeholder="First Name" required />
+                        <div class="f_row-2 ">
+                            <input type="email" value=@User.Identity.GetUserName().ToUpper() name="email" id="email" class="text-center form-control" disabled placeholder="Email" required />
+                            <br />
+                        </div>
+                        <div class="f_row-2 ">
+                            <input type="text" name="firstName" id="firstName" class="form-control  text-center" autofocus placeholder="First Name" required />
+                        </div>
+                        <br />
+                        <div class="f_row-2 ">
+                            <input type="text" name="lastName" id="lastName" class="form-control text-center" placeholder="Last Name" required />
+                            <br />
                         </div>
 
-                        <div class="f_row-2">
-                            <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required />
+                        <div class="f_row-2 last ">
+                            <input type="text" name="phone" id="phone" class="form-control text-center" placeholder="Phone" required />
                         </div>
-                        <div class="f_row-2">
-                            <input type="email" value=@Session["user-email"]  name="email" id="email" class="form-control" placeholder="Email" required />
-                        </div>
-                        <div class="f_row-2 last">
-                            <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" required />
-                        </div>      
-                        <br/>
+                        <br />
+
                         <div class="f_row-2 last text-center">
                             <a id="payNowButton" href=@string.Format("{0:0.00}", @Session["monthly-due"]) class="btn-success btn-lg payNowBtn">
                                 Subscribe <span class="glyphicon glyphicon-play"></span>
-                            </a> 
-                      
+                            </a>
+
                         </div>
                     </div>
 
+                </div>
+
+
+
+
             </div>
-
-            <!-- reset pswd -->
-
-
+            <br /> <br />
         </div>
-        <br /> <br /> <br /> <br />
+        <!-- //content -->
+
+        <hr />
+
+       </div>
+
+
     </div>
-    <!-- //content -->
 
-    <hr />
+    @section Scripts{
 
-
-
-
-
-
-
-
-</div>
-
-@section Scripts{
-
-    <script>
+        <script>
 
         $(function() {
 
@@ -130,5 +130,5 @@
 
         });
 
-    </script>
-}
+        </script>
+    }
