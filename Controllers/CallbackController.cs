@@ -19,12 +19,15 @@ namespace LoanCompareSite.Controllers
             string secretKey = ConfigurationManager.AppSettings["PaystackSecret"];
             var paystackTransactionAPI = new PaystackTransaction(secretKey);
             var tranxRef = HttpContext.Request.QueryString["reference"];
+
+//            //ensure user detail is saved once
+//            int savedCount = 0;
+
             if (tranxRef != null)
             {
                 var response = await paystackTransactionAPI.VerifyTransaction(tranxRef);
                 if (response.status)
                 {
-                    int savedCount = 0;
 
                     try
                     {
@@ -37,19 +40,21 @@ namespace LoanCompareSite.Controllers
                             db.loandetails.Find((int)Session["selectedItemId"]).count = currentCount + 1;
                             db.loandetails.Find((int)Session["selectedItemId"]).date = DateTime.Now;
                             //  Update subscription table
-                            if (savedCount <1)
-                            {
-                                var user = new subscription();
-                                user.userid = User.Identity.GetUserName().ToLower();
-                                user.startdate = DateTime.Now;
-                                user.enddate = DateTime.Now.AddMonths(1);
-                                db.subscriptions.Add(user);
 
-                                savedCount += 1;
-                            }
-                            
+                            var user = new subscription
+                            {
+                                userid = User.Identity.GetUserName().ToLower(),
+                                startdate = DateTime.Now,
+                                enddate = DateTime.Now.AddMonths(1)
+                            };
+
+                           
+                            db.subscriptions.Add(user);
+
+
 
                             db.SaveChanges();
+
 
                         }
                     }
