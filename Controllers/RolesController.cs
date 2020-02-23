@@ -1,19 +1,24 @@
-﻿using System.Web.Mvc;
+﻿using LoanCompareSite.Models.EF;
+
+using System.Web.Mvc;
 
 namespace LoanCompareSite.Controllers
 {
-    public class ManageUserRolesController : Controller
+
+    public class RolesController : Controller
     {
+        private LoanComparerModel context = new LoanComparerModel();
         // GET: ManageUserRoles
-        //        public ActionResult ManageRoles()
-        //        {
-        //            // prepopulat roles for the view dropdown
-        //            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr =>new SelectListItem
-        //            {
-        //               Value = rr.Name.ToString(),Text = rr.Name}).ToList();
-        //            ViewBag.Roles = list;
-        //            return View();
-        //        }
+        public ActionResult Index()
+        {
+            // prepopulat roles for the view dropdown
+
+            //            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr =>new SelectListItem
+            //            {
+            //               Value = rr.Name.ToString(),Text = rr.Name}).ToList();
+            //            ViewBag.Roles = list;
+            return View();
+        }
         //
         //        public ActionResult ManageUsers()
         //        {
