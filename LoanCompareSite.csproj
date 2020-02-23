@@ -243,7 +243,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap.css" />
-    <Content Include="Content\css\datatables.css" />
+    <Content Include="Content\css\datatables.min.css" />
     <Content Include="Content\css\fontawesome-all.min.css" />
     <Content Include="Content\css\loginstyle.css" />
     <Content Include="Content\css\style.css" />
@@ -254,7 +254,7 @@
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\bg1.jpg" />
     <Content Include="Content\js\bootstrap.js" />
-    <Content Include="Content\js\datatables.js" />
+    <Content Include="Content\js\datatables.min.js" />
     <Content Include="Content\js\jquery-2.2.3.min.js" />
     <Content Include="Content\js\jquery.chocolat.js" />
     <Content Include="favicon.ico" />
