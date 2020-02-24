@@ -223,9 +223,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EF\AspNetRole.cs" />
+    <Compile Include="Models\EF\AspNetUser.cs" />
+    <Compile Include="Models\EF\AspNetUserClaim.cs" />
+    <Compile Include="Models\EF\AspNetUserLogin.cs" />
+    <Compile Include="Models\EF\AspNetUserRole.cs" />
     <Compile Include="Models\EF\LoanComparerModel.cs" />
     <Compile Include="Models\EF\loandetail.cs" />
+    <Compile Include="Models\EF\request.cs" />
     <Compile Include="Models\EF\subscription.cs" />
+    <Compile Include="Models\EF\visitcount.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoanDetail.cs" />
     <Compile Include="Models\LoanRequest.cs" />
