@@ -414,6 +414,7 @@
     <Content Include="Views\Callback\Index.cshtml" />
     <Content Include="Views\Callback\PaymentError.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -27,6 +27,27 @@ namespace LoanCompareSite.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                context.Roles.Add(new IdentityRole()
+                {
+                    Name = collection["RoleName"]
+                });
+                context.SaveChanges();
+                ViewBag.ResultMessage = "Role Created Successfully";
+                return View("Create");
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
+
+            return View();
+        }
+
         public ActionResult ManageUsers()
         {
             // prepopulat roles for the view dropdown
