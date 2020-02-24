@@ -1,0 +1,54 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+
+@{
+    ViewBag.Title = "Edit Role";
+}
+<div class="inner-banner"></div>
+
+
+
+<div class="container">
+    <br/>
+    <br/>
+    <div class="title-section ">
+        <h2 class="heading-agileinfo text-center pb-4">Manage <span> Roles</span></h2>
+    </div>
+    <!-- content -->
+    <div class="container-agille">
+        <div class="formBox level-login">
+            <div class="box boxShaddow"></div>
+
+            <!-- login -->
+            <div class="box loginBox text-center">
+                <h3>Edit Rolename </h3>
+                @Html.ActionLink("List Roles", "Index") | @Html.ActionLink("Manage User Roles", "ManageUserRole ")
+                <hr/>
+                <div class="container">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model =>model.Id)
+                        <div class="form">
+                            <div class="f_row-2 ">
+                                <input type="text" name=@Model.Name class="text-center form-control" value=@Model.Name required autofocus autocomplete/>
+                                <br/>
+                            </div>
+
+                            <div class="f_row-2 last text-center">
+                                <input type="submit" value="Save" class="btn btn-info ">
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- //content -->
+        <hr/>
+
+    </div>
+</div>
