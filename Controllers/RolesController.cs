@@ -82,6 +82,8 @@ namespace LoanCompareSite.Controllers
             return RedirectToAction("Index");
         }
 
+
+        //
         public ActionResult ManageUsers()
         {
             // prepopulat roles for the view dropdown
