@@ -11,8 +11,7 @@
         <h2 class="heading-agileinfo text-center pb-4">Manage <span>User Roles</span></h2>
     </div>
 
-
-
+   
 
 
     <div class="container-agille" style="width: 100%; margin-bottom: 20%">
@@ -48,7 +47,8 @@
                                      Username :
                                 </td>
                                 <td>
-                                    @Html.TextBox("UserName")
+                                    @* @Html.TextBox("UserName") *@
+                                    @Html.DropDownList("UserName", (IEnumerable<SelectListItem>) ViewBag.Users, "Select ...")
                                 </td>
                                 <td></td>
                              
@@ -99,7 +99,8 @@
                                     Username :
                                 </td>
                                 <td>
-                                    @Html.TextBox("UserName")
+                                    @Html.DropDownList("UserName", (IEnumerable<SelectListItem>) ViewBag.Users, "Select ...")
+
                                 </td>
                                 <td></td>
                             </tr>
@@ -150,7 +151,8 @@
                                 Username :
                             </td>
                             <td>
-                                @Html.TextBox("UserName")
+                                @Html.DropDownList("UserName", (IEnumerable<SelectListItem>) ViewBag.Users, "Select ...")
+
                             </td>
                             <td></td>
                         </tr>

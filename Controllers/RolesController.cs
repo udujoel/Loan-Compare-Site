@@ -89,7 +89,14 @@ namespace LoanCompareSite.Controllers
             // prepopulat roles for the view dropdown
             var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr =>
             new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            var usersList = context.Users.ToList().Select(rr =>
+                                                              new SelectListItem
+                                                              {
+                                                                  Value = rr.UserName.ToString(),
+                                                                  Text = rr.UserName
+                                                              }).ToList();
             ViewBag.Roles = list;
+            ViewBag.Users = usersList;
             return View();
         }
 
@@ -107,7 +114,7 @@ namespace LoanCompareSite.Controllers
             var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
 
-            return View("ManageUsers");
+            return RedirectToAction("ManageUsers");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -125,7 +132,7 @@ namespace LoanCompareSite.Controllers
                 ViewBag.Roles = list;
             }
 
-            return View("ManageUsers");
+            return RedirectToAction("ManageUsers");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -148,7 +155,7 @@ namespace LoanCompareSite.Controllers
             var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
 
-            return View("ManageUsers");
+            return RedirectToAction("ManageUsers");
         }
 
     }
