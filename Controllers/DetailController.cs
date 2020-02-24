@@ -2,6 +2,8 @@
 using LoanCompareSite.Models.EF;
 using LoanCompareSite.Models.viewModels;
 
+using Microsoft.AspNet.Identity;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +43,24 @@ namespace LoanCompareSite.Controllers
 
                 using (var db = new LoanComparerModel())
                 {
+                    //save the request
+                    string email;
+                    if (Request.IsAuthenticated)
+                    {
+                        email = User.Identity.GetUserName();
+                    }
+                    else
+                    {
+                        email = "annonymouse";
 
+                    }
+
+                    db.requests.Add(new request()
+                    {
+                        amountreq = loanRequest.amount,
+                        durationreq = loanRequest.duration,
+                        username = email
+                    });
 
 
                     var query = from d in db.loandetails
@@ -75,12 +94,14 @@ namespace LoanCompareSite.Controllers
                         return View(loansDetail);
                     }
 
+                    db.SaveChanges();
+
                 }
 
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                return View("Error");
 
 
             }
@@ -105,6 +126,24 @@ namespace LoanCompareSite.Controllers
             {
                 using (var db = new LoanComparerModel())
                 {
+
+                    //increment count
+
+                    var visitsQuery = db.visitcounts.Where(d => d.username == User.Identity.GetUserName()).ToList();
+
+                    if (visitsQuery.Count > 0)
+                    {
+                        db.visitcounts.Find(visitsQuery[0].id).visits += 1;
+
+                    }
+                    else
+                    {
+                        db.visitcounts.Add(new visitcount()
+                        { username = User.Identity.GetUserName(), visits = 1, packageid = id });
+                    }
+
+
+                    db.visitcounts.Add(new visitcount() { packageid = id, username = User.Identity.GetUserName(), });
 
 
                     var query = db.loandetails.Where(d => d.id == id).ToList();
@@ -185,8 +224,8 @@ namespace LoanCompareSite.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw;
+                return View("Error");
+
             }
 
 
