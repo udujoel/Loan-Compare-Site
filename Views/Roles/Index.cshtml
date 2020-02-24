@@ -9,8 +9,8 @@
 
 <div class="container">
     <br /><br /><br />
-    <div class="title-section pb-sm-5 pb-3">
-        <h2 class="heading-agileinfo text-center pb-4">View <span> Roles</span></h2>
+    <div class="title-section">
+        <h2 class="heading-agileinfo text-center ">View <span> Roles</span></h2>
     </div>
 
 
@@ -23,36 +23,60 @@
                 <h3>View All Roles </h3>
                 @Html.ActionLink("Create A New Role", "Create") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
 
-                <hr/>
-                <div>
+                <hr />
+
+                <table id="viewroles" style="width: 80%;" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>Role name</td>
+                            <td> Delete</td>
+                            <td>Edit</td>
+                        </tr>
+                    </thead>
+                    <tbody>
                     @foreach (var role in Model)
                     {
-                        <p>
-                            <strong>@role.Name</strong>
-                            <span onclick="return confirm('Are you sure you want to Delete?')">
-                                <a href="/Roles/Delete?RoleName=@role.Name" class="delLink" style="color: red;">Delete</a>
-                            </span> | @Html.ActionLink("Edit", "Edit", new {roleName = role.Name})
-                        </p>
-                    }
-                </div>
+                        <tr>
+                            <td> <strong>@role.Name</strong></td>
+                            <td>
+                                <span onclick="return confirm('Are you sure you want to Delete?')">
+                                    <a href="/Roles/Delete?RoleName=@role.Name" class="delLink" style="color: red;">Delete</a>
+                                </span>
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new {roleName = role.Name})
+                            </td>
 
+                        </tr>
+                    }
+                    </tbody>
+                </table>
 
 
 
             </div>
-            <br/> <br/>
+          
         </div>
         <!-- //content -->
 
-        <hr/>
-
     </div>
-
-
-
 
 
 
 </div>
 
 <hr />
+@section scripts{
+
+    <script>
+        $(document).ready(function() {
+            $('#viewroles').DataTable({
+                "paging": false,
+                "searching": true,
+                "info": false,
+
+            });
+        });
+
+    </script>
+}
