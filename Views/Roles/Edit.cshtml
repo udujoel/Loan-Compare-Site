@@ -31,7 +31,7 @@
                         @Html.HiddenFor(model =>model.Id)
                         <div class="form">
                             <div class="f_row-2 ">
-                                <input type="text" name=@Model.Name class="text-center form-control" value=@Model.Name required autofocus autocomplete/>
+                                @Html.TextBoxFor(model =>model.Name, new {@class="text-center form-control"})
                                 <br/>
                             </div>
 

@@ -39,14 +39,14 @@ namespace LoanCompareSite.Controllers
                 });
                 context.SaveChanges();
                 ViewBag.ResultMessage = "Role Created Successfully";
-                return View("Index");
+
             }
             catch (Exception e)
             {
                 return View("Error");
             }
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(string Rolename)
