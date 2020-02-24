@@ -35,7 +35,7 @@ namespace LoanCompareSite.Controllers
 
 
 
-                    if (diff.Days > 15)
+                    if (diff.Days > 0)
                     {
                         activeSubscription = true;
                     }
