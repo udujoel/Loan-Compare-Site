@@ -8,26 +8,45 @@
 
 
 <div class="container">
-<br/><br/><br/>
-<div class="title-section pb-sm-5 pb-3">
-    <h2 class="heading-agileinfo text-center pb-4">Manage <span> Roles</span></h2>
-</div>
+    <br /><br /><br />
+    <div class="title-section pb-sm-5 pb-3">
+        <h2 class="heading-agileinfo text-center pb-4">View <span> Roles</span></h2>
+    </div>
 
-    @Html.ActionLink("Create A New Role", "Create") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
 
-    <hr />
-    <div>
-        @foreach (var role in Model)
-        {
-            <p>
-                <strong>@role.Name</strong>
-                <span onclick="return confirm('Are you sure you want to Delete?')">
-                    <a href="/Roles/Delete?RoleName=@role.Name" class="delLink" style="color: red;">Delete</a>
-                </span> | @Html.ActionLink("Edit", "Edit", new { roleName = role.Name })
-            </p>
-        }
-</div>  
+    <div class="container-agille">
+        <div class="formBox level-login">
+            <div class="box boxShaddow"></div>
 
+            <!-- login -->
+            <div class="box loginBox text-center">
+                <h3>View All Roles </h3>
+                @Html.ActionLink("Create A New Role", "Create") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
+
+                <hr/>
+                <div>
+                    @foreach (var role in Model)
+                    {
+                        <p>
+                            <strong>@role.Name</strong>
+                            <span onclick="return confirm('Are you sure you want to Delete?')">
+                                <a href="/Roles/Delete?RoleName=@role.Name" class="delLink" style="color: red;">Delete</a>
+                            </span> | @Html.ActionLink("Edit", "Edit", new {roleName = role.Name})
+                        </p>
+                    }
+                </div>
+
+
+
+
+            </div>
+            <br/> <br/>
+        </div>
+        <!-- //content -->
+
+        <hr/>
+
+    </div>
 
 
 
