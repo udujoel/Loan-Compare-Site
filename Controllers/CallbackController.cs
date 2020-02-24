@@ -13,15 +13,13 @@ namespace LoanCompareSite.Controllers
 {
     public class CallbackController : Controller
     {
-        //        [Route("order/callback")]
         public async Task<ActionResult> Index()
         {
             string secretKey = ConfigurationManager.AppSettings["PaystackSecret"];
             var paystackTransactionAPI = new PaystackTransaction(secretKey);
             var tranxRef = HttpContext.Request.QueryString["reference"];
 
-//            //ensure user detail is saved once
-//            int savedCount = 0;
+
 
             if (tranxRef != null)
             {
@@ -48,7 +46,7 @@ namespace LoanCompareSite.Controllers
                                 enddate = DateTime.Now.AddMonths(1)
                             };
 
-                           
+
                             db.subscriptions.Add(user);
 
 
