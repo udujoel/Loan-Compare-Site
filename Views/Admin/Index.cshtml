@@ -5,8 +5,8 @@
 
 <div class="inner-banner"></div>
 <div class="container">
-    <br />
-    <br />
+    <br/>
+    <br/>
     <div class="title-section ">
         <h2 class="heading-agileinfo text-center pb-4">Admin <span>Page</span></h2>
     </div>
@@ -14,95 +14,67 @@
 
     <!-- Main Container Fluid -->
 
-    
-            <div class="col-table">
-                <div class="heading-buttons innerLR box">
-                    <h4 class="margin-none innerTB pull-left">Bookings</h4>
-                    <a href="" class="btn-xs pull-right btn btn-primary"><i class="fa fa-fw fa-plus"></i> Add record</a>
-                    <div class="clearfix"></div>
+
+    <div class="col-separator box bg-gray">
+
+        <h2 class="innerAll margin-none bg-white strong border-bottom text-center"><i class="fa fa-fw fa-calendar"></i> @DateTime.Now</h2>
+
+        <div class="innerAll bg-white">
+
+
+            <!-- Table -->
+            <table class="table table-bordered table-striped "style="border: 1px solid; width: 70%; float: left;">
+                <thead class="thead-dark">
+                <tr>
+
+                    <th>No.</th>
+                    <th style="width: 150px;">Loan Provider</th>
+                    <th>No. Of Visits</th>
+                    <th>Unique Visits</th>
+                    <th>Avg. Amt. Requested</th>
+                    <th>Most Duration</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <!-- Item -->
+                <tr>
+                    <td>1</td>
+                    <td>11:00</td>
+                    <td><strong>Lorem Ipsum</strong><br /><small>Location: New York</small></td>
+                    <td>0740000000</td>
+                    <td>&euro;16</td>
+                    <td>Friend</td>
+                </tr>
+                <!-- // Item END -->
+
+
+
+                </tbody>
+            </table>
+            <!-- // Table END --> 
+                   
+            
+            @* summery card *@  
+        <div class="container">
+            <div class="card " style="border: 3px solid; width: 20%; float: right;">
+                <div class="card-header text-center text-white bg-secondary mb-3">
+                    Summary
                 </div>
-                <div class="col-app">
-                    <div class="col-table">
-
-
-                        <div class="col-md-8">
-                            <div class="col-separator box bg-gray">
-
-                                <h5 class="innerAll margin-none bg-white strong border-bottom"><i class="fa fa-fw fa-calendar"></i> Monday, 10 June 2013</h5>
-
-                                <div class="innerAll bg-white">
-
-
-                                    <!-- Table -->
-                                    <table class="table table-bordered table-condensed table-striped table-primary table-vertical-center checkboxs">
-                                        <thead class="thead-dark">
-                                        <tr>
-                                            <th style="width: 1%;"></th>
-                                            <th class="center">No.</th>
-                                            <th class="center">Time</th>
-                                            <th>Client</th>
-                                            <th class="center">Phone</th>
-                                            <th class="center">Amount</th>
-                                            <th class="center">Heard from</th>
-                                            <th class="center" style="width: 150px;">Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        <!-- Item -->
-                                        <tr>
-                                            <td class="center uniformjs"></td>
-                                            <td class="center">1</td>
-                                            <td class="center">11:00</td>
-                                            <td><strong>Lorem Ipsum</strong><br /><small>Location: New York</small></td>
-                                            <td class="center">0740000000</td>
-                                            <td class="center">&euro;16</td>
-                                            <td class="center">Friend</td>
-                                            <td class="center">
-                                                @* <div class="btn-group btn-group-sm"> *@
-                                                @*     <a href="#" class="btn btn-default"><i class="fa fa-eye"></i></a> *@
-                                                @*     <a href="#" class="btn btn-success"><i class="fa fa-pencil"></i></a> *@
-                                                @*     <a href="#" class="btn btn-danger"><i class="fa fa-trash-o"></i></a> *@
-                                                @* </div> *@
-                                            </td>
-                                        </tr>
-                                        <!-- // Item END -->
-                                        <!-- Item -->
-                                        <tr class="selectable selected">
-                                            <td class="center uniformjs"></td>
-                                            <td class="center">2</td>
-                                            <td class="center">12:00</td>
-                                            <td><strong>Lorem Ipsum</strong><br /><small>Location: Miami</small></td>
-                                            <td class="center">0740000000</td>
-                                            <td class="center">&euro;35</td>
-                                            <td class="center">Radio</td>
-                                            <td class="center">
-                                                <div class="btn-group btn-group-sm">
-                                                    <a href="#" class="btn btn-default"><i class="fa fa-eye"></i></a>
-                                                    <a href="#" class="btn btn-success"><i class="fa fa-pencil"></i></a>
-                                                    <a href="#" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <!-- // Item END -->
-                                        <!-- Item -->
-
-
-                                        </tbody>
-                                    </table>
-                                    <!-- // Table END -->
-
-                                </div>
-                                <div class="col-separator-h box"></div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
             </div>
-       
+        </div>
+        </div>
+        <div class="col-separator-h box"></div>
+
+
+    </div>
+    <div class="clearfix"></div>
+
     <!-- // Content END -->
 
 
