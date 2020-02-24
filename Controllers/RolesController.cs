@@ -20,6 +20,13 @@ namespace LoanCompareSite.Controllers
             return View(context.Roles.ToList());
         }
 
+        public ActionResult Create()
+        {
+
+
+            return View();
+        }
+
         public ActionResult ManageUsers()
         {
             // prepopulat roles for the view dropdown
