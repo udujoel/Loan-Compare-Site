@@ -48,6 +48,15 @@ namespace LoanCompareSite.Controllers
             return View();
         }
 
+        public ActionResult Delete(string Rolename)
+        {
+            var thisRole = context.Roles.Where(r => r.Name.Equals(Rolename, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            context.Roles.Remove(thisRole);
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult ManageUsers()
         {
             // prepopulat roles for the view dropdown
