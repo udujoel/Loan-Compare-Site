@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -53,6 +54,30 @@ namespace LoanCompareSite.Controllers
             var thisRole = context.Roles.Where(r => r.Name.Equals(Rolename, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
             context.Roles.Remove(thisRole);
             context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(string RoleName)
+        {
+            var thisRole = context.Roles.Where(r => r.Name.Equals(RoleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+
+            return View(thisRole);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(IdentityRole role)
+        {
+            try
+            {
+                context.Entry(role).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
 
             return RedirectToAction("Index");
         }
