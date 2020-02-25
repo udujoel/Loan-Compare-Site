@@ -17,9 +17,5 @@ namespace LoanCompareSite.Models.EF
         public long amountreq { get; set; }
 
         public long durationreq { get; set; }
-
-        public virtual request request1 { get; set; }
-
-        public virtual request request2 { get; set; }
     }
 }

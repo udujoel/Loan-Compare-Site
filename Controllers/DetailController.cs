@@ -129,11 +129,13 @@ namespace LoanCompareSite.Controllers
 
                     //increment count
 
-                    var visitsQuery = db.visitcounts.Where(d => d.username == User.Identity.GetUserName()).ToList();
 
-                    if (visitsQuery.Count > 0)
+                    var visitsQuery = db.visitcounts.Where(d => d.packageid == id).FirstOrDefault();
+
+
+                    if (!visitsQuery.Equals(null))
                     {
-                        db.visitcounts.Find(visitsQuery[0].id).visits += 1;
+                        db.visitcounts.Find(visitsQuery.id).visits += 1;
 
                     }
                     else
@@ -142,8 +144,6 @@ namespace LoanCompareSite.Controllers
                         { username = User.Identity.GetUserName(), visits = 1, packageid = id });
                     }
 
-
-                    db.visitcounts.Add(new visitcount() { packageid = id, username = User.Identity.GetUserName(), });
 
 
                     var query = db.loandetails.Where(d => d.id == id).ToList();
@@ -218,6 +218,8 @@ namespace LoanCompareSite.Controllers
                         amountPaid += monthlyLoanDue;
                         rCount += 1;
                     }
+
+                    db.SaveChanges();
 
                 }
 

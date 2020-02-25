@@ -17,9 +17,5 @@ namespace LoanCompareSite.Models.EF
 
         [Required]
         public string username { get; set; }
-
-        public virtual visitcount visitcount1 { get; set; }
-
-        public virtual visitcount visitcount2 { get; set; }
     }
 }

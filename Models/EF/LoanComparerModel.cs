@@ -49,14 +49,6 @@ namespace LoanCompareSite.Models.EF
             modelBuilder.Entity<loandetail>()
                 .Property(e => e.website)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<request>()
-                .HasOptional(e => e.request1)
-                .WithRequired(e => e.request2);
-
-            modelBuilder.Entity<visitcount>()
-                .HasOptional(e => e.visitcount1)
-                .WithRequired(e => e.visitcount2);
         }
     }
 }
