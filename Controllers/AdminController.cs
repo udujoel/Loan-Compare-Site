@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using LoanCompareSite.Models.EF;
 
 namespace LoanCompareSite.Controllers
 {
@@ -8,6 +10,23 @@ namespace LoanCompareSite.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
+            
+            try
+            {
+
+                using (var db = new  LoanComparerModel())
+                {
+                    
+
+
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
             return View();
         }
     }
