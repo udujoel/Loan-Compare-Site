@@ -1,4 +1,5 @@
 ﻿using LoanCompareSite.Models.EF;
+using LoanCompareSite.Models.viewModels;
 
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace LoanCompareSite.Controllers
             List<loandetail> allProviders;
             List<visitcount> visitcount;
 
+            var adminreport = new List<adminReport>();
+
 
             try
             {
@@ -25,13 +28,23 @@ namespace LoanCompareSite.Controllers
                 {
                     allProviders = db.loandetails.ToList();
                     visitcount = db.visitcounts.ToList();
+
+
+                    foreach (var provider in allProviders.OrderBy(x => x.id))
+                    {
+                        int visitSum = db.visitcounts.Where(d => d.packageid == provider.id).Select(d => d.visits).Sum();
+                        var uniqueCount = db.visitcounts.Where(x => x.packageid == provider.id).Distinct().Count();
+                        adminreport.Add(new adminReport() { noOfVisits = visitSum, package = provider.name, providername = provider.name, uniqueVisit = uniqueCount });
+
+
+                    }
                 }
             }
             catch (Exception e)
             {
                 return View("Error");
             }
-            return View(allProviders);
+            return View(adminreport);
         }
     }
 }

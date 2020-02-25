@@ -238,6 +238,7 @@
     <Compile Include="Models\LoanRequest.cs" />
     <Compile Include="Models\LoanTerms.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\viewModels\adminReport.cs" />
     <Compile Include="Models\viewModels\PaystackCustomerModel.cs" />
     <Compile Include="Models\viewModels\RepaymentDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
