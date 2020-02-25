@@ -1,6 +1,7 @@
-﻿
+﻿@model IEnumerable<LoanCompareSite.Models.EF.loandetail>
 @{
     ViewBag.Title = "Index";
+    int sn = 1;
 }
 
 <div class="inner-banner"></div>
@@ -29,24 +30,30 @@
 
                     <th>No.</th>
                     <th style="width: 150px;">Loan Provider</th>
+                    <th style="width: 150px;">Loan Package</th>
                     <th>No. Of Visits</th>
                     <th>Unique Visits</th>
-                    <th>Avg. Amt. Requested</th>
-                    <th>Most Duration</th>
+                   
                 </tr>
                 </thead>
                 <tbody>
 
-                <!-- Item -->
-                <tr>
-                    <td>1</td>
-                    <td>11:00</td>
-                    <td><strong>Lorem Ipsum</strong><br /><small>Location: New York</small></td>
-                    <td>0740000000</td>
-                    <td>&euro;16</td>
-                    <td>Friend</td>
-                </tr>
-                <!-- // Item END -->
+                    <!-- Item -->
+                    @foreach (var provider in Model)
+                    {
+
+
+                        <tr>
+                            <td>@sn</td>
+                            <td>@provider.name</td>
+                            <td>@provider.package</td>
+                            <td><strong>5</strong></td>
+                            <td>3</td>
+
+                        </tr>
+                        sn += 1;
+                    }
+                    <!-- // Item END -->
 
 
 
@@ -65,6 +72,8 @@
                     <li class="list-group-item"><span>Most Subscribed Package:</span> Package_name </li>
                     <li class="list-group-item"><span>Most Visited Package:</span> Package_name </li>
                     <li class="list-group-item"><span>Total Traffic:</span> Traffic_Count </li>
+                    <li class="list-group-item"><span>Avg. Amt. Requested</span> Amount </li>
+                    <li class="list-group-item"><span>Most Duration </span> Duration </li>
                     
                 </ul>
             </div>

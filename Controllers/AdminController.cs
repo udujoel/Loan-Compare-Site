@@ -1,6 +1,9 @@
-﻿using System;
+﻿using LoanCompareSite.Models.EF;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
-using LoanCompareSite.Models.EF;
 
 namespace LoanCompareSite.Controllers
 {
@@ -10,24 +13,23 @@ namespace LoanCompareSite.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
-            
+            List<loandetail> allProviders;
+            List<visitcount> visitcount;
+
+
             try
             {
-
-                using (var db = new  LoanComparerModel())
+                using (var db = new LoanComparerModel())
                 {
-                    
-
-
+                    allProviders = db.loandetails.ToList();
+                    visitcount = db.visitcounts.ToList();
                 }
-
-
             }
             catch (Exception e)
             {
                 return View("Error");
             }
-            return View();
+            return View(allProviders);
         }
     }
 }
