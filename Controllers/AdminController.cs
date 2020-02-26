@@ -20,6 +20,11 @@ namespace LoanCompareSite.Controllers
             List<visitcount> visitcount;
 
             var adminreport = new List<adminReport>();
+            string mostSubscribedPackage;
+            string mostVisitedPackage;
+            int totalVisits;
+            double averageAmountRequested;
+            int mostDurationRequested;
 
 
             try
@@ -47,7 +52,21 @@ namespace LoanCompareSite.Controllers
 
 
                     }
+                    //mostSubscribed package
+                    var mostVisits = db.loandetails.Max(x=>x.count).GetValueOrDefault(0);
+                    mostSubscribedPackage = db.loandetails.Where(x => x.count == mostVisits).Select(x => x.package).FirstOrDefault();
+
+                    //mostVisited Package
+                    var mostVisitedPackage_query = db.visitcounts.Max(x => x.visits);
+                    mostVisitedPackage = db
+                                         .loandetails
+                                         .Find(db.visitcounts.Where(x => x.visits == mostVisitedPackage_query)
+                                                 .Select(x => x.packageid))
+                                         .package;
                 }
+
+                ViewBag.mostSubscribedPackage = mostSubscribedPackage;
+                ViewBag.mostVisitedPackage = mostVisitedPackage;
             }
             catch (Exception e)
             {
