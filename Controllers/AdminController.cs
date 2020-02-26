@@ -32,9 +32,18 @@ namespace LoanCompareSite.Controllers
 
                     foreach (var provider in allProviders.OrderBy(x => x.id))
                     {
-                        int visitSum = db.visitcounts.Where(d => d.packageid == provider.id).Select(d => d.visits).Sum();
+                        int visitSum = db.visitcounts.Where(d => d.packageid == provider.id)
+                                         .Select(d => d.visits)
+                                         .DefaultIfEmpty(0)
+                                         .Sum();
                         var uniqueCount = db.visitcounts.Where(x => x.packageid == provider.id).Distinct().Count();
-                        adminreport.Add(new adminReport() { noOfVisits = visitSum, package = provider.name, providername = provider.name, uniqueVisit = uniqueCount });
+                        adminreport.Add(new adminReport()
+                        {
+                            noOfVisits = (int)visitSum,
+                            package = provider.name,
+                            providername = provider.name,
+                            uniqueVisit = uniqueCount
+                        });
 
 
                     }
