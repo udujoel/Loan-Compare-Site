@@ -63,10 +63,22 @@ namespace LoanCompareSite.Controllers
                                          .Find(db.visitcounts.Where(x => x.visits == mostVisitedPackage_query)
                                                  .Select(x => x.packageid))
                                          .package;
+
+                    //totalVisits
+                    totalVisits = db.visitcounts.Sum(x => x.visits);
+
+                    //averageAmountRequested
+                    var sumOfAmounts = db.requests.Sum(x => x.amountreq);
+                    var requestCount = db.visitcounts.Count();
+
+                    averageAmountRequested = sumOfAmounts / requestCount;
                 }
 
                 ViewBag.mostSubscribedPackage = mostSubscribedPackage;
                 ViewBag.mostVisitedPackage = mostVisitedPackage;
+                ViewBag.totalVisits = totalVisits;
+                ViewBag.averageAmountRequested = averageAmountRequested;
+
             }
             catch (Exception e)
             {
