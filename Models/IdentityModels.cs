@@ -29,5 +29,7 @@ namespace LoanCompareSite.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<LoanCompareSite.Models.EF.AspNetUser> AspNetUsers { get; set; }
     }
 }
