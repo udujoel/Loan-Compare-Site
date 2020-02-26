@@ -25,6 +25,7 @@ namespace LoanCompareSite.Controllers
             int totalVisits;
             double averageAmountRequested;
             int mostDurationRequested;
+            int mostAmountRequested;
 
 
             try
@@ -53,7 +54,7 @@ namespace LoanCompareSite.Controllers
 
                     }
                     //mostSubscribed package
-                    var mostVisits = db.loandetails.Max(x=>x.count).GetValueOrDefault(0);
+                    var mostVisits = db.loandetails.Max(x => x.count).GetValueOrDefault(0);
                     mostSubscribedPackage = db.loandetails.Where(x => x.count == mostVisits).Select(x => x.package).FirstOrDefault();
 
                     //mostVisited Package
@@ -72,12 +73,21 @@ namespace LoanCompareSite.Controllers
                     var requestCount = db.visitcounts.Count();
 
                     averageAmountRequested = sumOfAmounts / requestCount;
+
+                    //mostDurationRequested
+                    mostDurationRequested = (int)db.requests.Max(x => x.durationreq);
+
+                    //mostAmountRequested
+                    mostAmountRequested = (int)db.requests.Max(x => x.amountreq);
+
                 }
 
                 ViewBag.mostSubscribedPackage = mostSubscribedPackage;
                 ViewBag.mostVisitedPackage = mostVisitedPackage;
                 ViewBag.totalVisits = totalVisits;
                 ViewBag.averageAmountRequested = averageAmountRequested;
+                ViewBag.mostDurationRequested = mostDurationRequested;
+                ViewBag.mostAmountRequested = mostAmountRequested;
 
             }
             catch (Exception e)
