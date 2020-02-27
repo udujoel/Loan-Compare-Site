@@ -133,16 +133,18 @@ namespace LoanCompareSite.Controllers
                     var visitsQuery = db.visitcounts.Where(d => d.packageid == id).FirstOrDefault();
 
 
-                    if (!visitsQuery.Equals(null))
+                    if (visitsQuery == null)
                     {
-                        db.visitcounts.Find(visitsQuery.id).visits += 1;
+                    db.visitcounts.Add(new visitcount() 
+                                           {username = User.Identity.GetUserName(), visits = 1, packageid = id});
 
-                    }
+                }
                     else
                     {
-                        db.visitcounts.Add(new visitcount()
-                        { username = User.Identity.GetUserName(), visits = 1, packageid = id });
-                    }
+                       
+
+                        db.visitcounts.Find(visitsQuery.id).visits += 1;
+                }
 
 
 
@@ -223,15 +225,15 @@ namespace LoanCompareSite.Controllers
 
                 }
 
-            }
+        }
             catch (Exception e)
             {
                 return View("Error");
 
-            }
+    }
 
 
-            ViewBag.Loanterms = loanterms;
+    ViewBag.Loanterms = loanterms;
             ViewBag.Repayment = repaymentDetail;
 
 
