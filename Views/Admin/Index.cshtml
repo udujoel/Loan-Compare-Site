@@ -69,12 +69,12 @@
                     Summary
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><span>Most Subscribed Package:</span><br/> @ViewBag.mostSubscribedPackage </li>
+                    <li class="list-group-item">Most Subscribed Package:<br/> <span class="text-center strong">@ViewBag.mostSubscribedName's @ViewBag.mostSubscribedPackage  </span></li>
                     <li class="list-group-item"><span>Most Visited Package:</span><br/>@ViewBag.mostVisitedPackage </li>
                     <li class="list-group-item"><span>Total Traffic:</span> <br/>@ViewBag.totalVisits </li>
-                    <li class="list-group-item"><span>Avg. Amt. Requested</span><br/>@ViewBag.averageAmountRequested </li>
-                    <li class="list-group-item"><span>Most Duration </span><br/>@ViewBag.mostDurationRequested </li>
-                    <li class="list-group-item"><span>Most Amount </span><br/>@ViewBag.mostAmountRequested </li>
+                    <li class="list-group-item"><span>Avg. Amt. Requested</span><br />@String.Format("{0:C}", @ViewBag.averageAmountRequested)   </li>
+                    <li class="list-group-item"><span>Most Duration </span><br/>@ViewBag.mostDurationRequested months </li>
+                    <li class="list-group-item"><span>Most Amount </span><br /> @String.Format("{0:C}", @ViewBag.mostAmountRequested)  </li>
                     
                 </ul>
             </div>

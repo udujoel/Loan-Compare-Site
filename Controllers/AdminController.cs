@@ -26,11 +26,13 @@ namespace LoanCompareSite.Controllers
             double averageAmountRequested;
             int mostDurationRequested;
             int mostAmountRequested;
+            string mostSubscribedName;
 
 
-            try
-            {
-                using (var db = new LoanComparerModel())
+
+            //            try
+            //            {
+            using (var db = new LoanComparerModel())
                 {
                     allProviders = db.loandetails.ToList();
                     visitcount = db.visitcounts.ToList();
@@ -46,7 +48,7 @@ namespace LoanCompareSite.Controllers
                         adminreport.Add(new adminReport()
                         {
                             noOfVisits = (int)visitSum,
-                            package = provider.name,
+                            package = provider.package,
                             providername = provider.name,
                             uniqueVisit = uniqueCount
                         });
@@ -55,15 +57,20 @@ namespace LoanCompareSite.Controllers
                     }
                     //mostSubscribed package
                     var mostVisits = db.loandetails.Max(x => x.count).GetValueOrDefault(0);
+                   mostSubscribedName = db.loandetails.Where(x => x.count == mostVisits).Select(x => x.name).FirstOrDefault();
                     mostSubscribedPackage = db.loandetails.Where(x => x.count == mostVisits).Select(x => x.package).FirstOrDefault();
 
                     //mostVisited Package
                     var mostVisitedPackage_query = db.visitcounts.Max(x => x.visits);
+
+                    var mostVisitedID = db.visitcounts.Where(x => x.visits == mostVisitedPackage_query)
+                                          .Select(x => x.packageid).FirstOrDefault();
                     mostVisitedPackage = db
                                          .loandetails
-                                         .Find(db.visitcounts.Where(x => x.visits == mostVisitedPackage_query)
-                                         .Select(x => x.packageid))
-                                         .package;
+                                         .Find(mostVisitedID)
+                                         .name.ToString();
+
+//                    mostVisitedPackage = "";
 
                     //totalVisits
                     totalVisits = db.visitcounts.Sum(x => x.visits);
@@ -82,6 +89,7 @@ namespace LoanCompareSite.Controllers
 
                 }
 
+                ViewBag.mostSubscribedName = mostSubscribedName;
                 ViewBag.mostSubscribedPackage = mostSubscribedPackage;
                 ViewBag.mostVisitedPackage = mostVisitedPackage;
                 ViewBag.totalVisits = totalVisits;
@@ -89,11 +97,11 @@ namespace LoanCompareSite.Controllers
                 ViewBag.mostDurationRequested = mostDurationRequested;
                 ViewBag.mostAmountRequested = mostAmountRequested;
 
-            }
-            catch (Exception e)
-            {
-                return View("Error");
-            }
+//            }
+//            catch (Exception e)
+//            {
+//                return View("Error");
+//            }
             return View(adminreport);
         }
     }
