@@ -247,7 +247,6 @@ namespace LoanCompareSite.Controllers
 
 
             return RedirectToRoute(new { Controller = "Subscription", action = "Index" });
-            //            return Redirect((string)Session["website"]);
         }
 
 

@@ -10,7 +10,7 @@ namespace LoanCompareSite.Controllers
 {
     public class AdminController : Controller
     {
-
+        
 
         // GET: Admin
         [Authorize(Roles = "admin")]
@@ -62,7 +62,7 @@ namespace LoanCompareSite.Controllers
                     mostVisitedPackage = db
                                          .loandetails
                                          .Find(db.visitcounts.Where(x => x.visits == mostVisitedPackage_query)
-                                                 .Select(x => x.packageid))
+                                         .Select(x => x.packageid))
                                          .package;
 
                     //totalVisits

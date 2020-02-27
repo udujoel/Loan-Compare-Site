@@ -11,6 +11,15 @@
 			@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link shadow"})
 		</li>
 		<li><a class="nav-link shadow text-info" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+		@if (User.IsInRole("admin"))
+		{
+			<li>
+				@Html.ActionLink("Report", "Index", "Admin", routeValues: null, htmlAttributes: new {title = "Manage", @class = "nav-link shadow"})
+			</li>
+			<li>
+				@Html.ActionLink("Report", "Index", "Roles", routeValues: null, htmlAttributes: new {title = "Manage", @class = "nav-link shadow"})
+			</li>
+		}
 	</ul>
 	}
 }
